@@ -8,16 +8,31 @@ mkdir grading-area
 git clone $1 student-submission
 echo 'Finished cloning'
 
-if [[ -f student-submission/ListExamples.java ]]
+# added code below
+fileExistence=`find student-submission/ -name ListExamples.java`
+if [[ $fileExistence == "" ]]
 then
-  echo 'ListExamples.java found'
-else
-  echo 'ListExamples.java not found'
-  echo 'Score: 0/4'
+  echo "ListExamples.java not found"
+  echo "Score: 0/4"
   exit 1
+else
+  echo "ListExamples.java found"
 fi
+# added code above
 
-cp student-submission/ListExamples.java ./grading-area
+# commented-out original code below
+#if [[ -f student-submission/ListExamples.java ]]
+#then
+#  echo 'ListExamples.java found'
+#else
+#  echo 'ListExamples.java not found'
+#  echo 'Score: 0/4'
+#  exit 1
+#fi
+# commented-out original code above
+
+# cp student-submission/ListExamples.java ./grading-area #commented-out original code
+cp $fileExistence ./grading-area # added code
 
 cp TestListExamples.java grading-area/
 cp -r lib grading-area/

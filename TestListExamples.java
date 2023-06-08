@@ -44,4 +44,14 @@ public class TestListExamples {
     List<String> filtered = ListExamples.filter(input, new IsMoon());
     assertEquals(expect, filtered);
   }
+
+  // added test method:
+  @Test(timeout = 500)
+  public void testMergeDuplicates() {
+    List<String> input1 = Arrays.asList("a", "b", "c");
+    List<String> input2 = Arrays.asList("c", "d", "e");
+    List<String> expect = Arrays.asList("a", "b", "c", "c", "d", "e");
+    List<String> merged = ListExamples.merge(input1, input2);
+    assertEquals(expect, merged);
+  }
 }
